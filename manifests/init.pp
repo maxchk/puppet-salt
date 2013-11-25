@@ -1,0 +1,129 @@
+# == Class: salt
+#
+# Install, configure and manage SaltStack.
+#
+# === Parameters
+# for master and minion by default all parameters set to undef
+# this allows to apply following logic in a template
+# <% if @minion_master -%>
+# master: <%= @minion_master %>
+# <% else -%>
+# #master: salt
+# <% end -%>
+#
+# this makes crafting templates a simple matter of running 
+# few lines bash script :)
+#
+# ==== Minion parameters
+# all minion specific parameters start with 'minion_' prefix
+#
+# [*minion_master*]
+#   is equivalent to salt-minion conf option: master
+#
+# [*minion_master_port*]
+#   is equivalent to salt-minion conf option: master_port
+#
+# ==== Master parameters
+# all master specific parameters start with 'master_' prefix
+#
+# [*master_interface*]
+#   is equivalent to salt-master conf option: interface
+#
+# [*master_publish_port*]
+#   is equivalent to salt-master conf option: publish_port
+#
+# and so on
+# For both master and minon only primary configuration options are available
+# If you need more, you probably won't be using Puppet at that point
+#
+# ==== Module parameters
+#
+# module related parameters:
+# [*master*]
+#   Defines if to install salt-master, can be true or false
+#   default value: false
+#
+# [*version*] 
+#   Which version of package to install,can be present, latest, absent or <version>
+#   default value: present
+#
+# [*master_conf_file*]
+#   Configuration file for salt master
+#
+# [*minion_conf_file*]
+#   Configuration file for salt minion
+#
+# [*master_conf_template*]
+#   Template file for salt master
+#
+# [*minion_conf_template*]
+#   Template file for salt minion
+#
+#
+# === Examples
+#
+# install salt (minion only)
+#include salt
+#
+# install salt (minion only) and set minion option 'master' to 'salt-master.example.com'
+#class {'::salt':
+#  minion_master => 'salt-master.example.com',
+#}
+#
+# install salt (master and minion) and set minion option 'master' to 'salt-master.example.com'
+#class {'::salt':
+#  master        => true,
+#  minion_master => 'salt-master.example.com',
+#}
+
+class salt (
+  $master                          = false,
+  $version                         = present,
+  $master_conf_file                = $salt::defaults::master_conf_file,
+  $minion_conf_file                = $salt::defaults::minion_conf_file,
+  $master_conf_template            = $salt::defaults::master_conf_template,
+  $minion_conf_template            = $salt::defaults::minion_conf_template,
+  $master_interface                = undef,
+  $master_publish_port             = undef,
+  $master_user                     = undef,
+  $master_max_open_files           = undef,
+  $master_worker_threads           = undef,
+  $master_ret_port                 = undef,
+  $master_pidfile                  = undef,
+  $master_root_dir                 = undef,
+  $master_pki_dir                  = undef,
+  $master_cachedir                 = undef,
+  $master_keep_jobs                = undef,
+  $master_job_cache                = undef,
+  $master_minion_data_cache        = undef,
+  $master_sock_dir                 = undef,
+  $minion_master                   = undef,
+  $minion_master_port              = undef,
+  $minion_user                     = undef,
+  $minion_pidfile                  = undef,
+  $minion_root_dir                 = undef,
+  $minion_pki_dir                  = undef,
+  $minion_id                       = undef,
+  $minion_append_domain            = undef,
+  $minion_cachedir                 = undef,
+  $minion_verify_env               = undef,
+  $minion_cache_jobs               = undef,
+  $minion_sock_dir                 = undef,
+  $minion_backup_mode              = undef,
+  $minion_acceptance_wait_time     = undef,
+  $minion_random_reauth_delay      = undef,
+  $minion_acceptance_wait_time_max = undef,
+  $minion_dns_check                = undef,
+  $minion_ipc_mode                 = undef,
+  $minion_tcp_pub_port             = undef,
+  $minion_tcp_pull_port            = undef,
+) inherits salt::defaults {
+
+  # salt-master
+  if $master {
+    class {'salt::master':}
+  }
+
+  # salt-minion
+  class {'salt::minion':}
+}

@@ -1,6 +1,6 @@
 ## Puppet module for Salt
 
-   This Puppet module installs and configures Salt.
+   This Puppet module installs and configures Salt.  
    Tested on Ubuntu and CentOS.
 
 ## Class ::salt
@@ -8,7 +8,7 @@
    Installs Salt.
    
    Provides access to primary configuration options.  
-   If you need access to more options, you probably won't be using Puppet at that point :)  
+   If you need access to more options, you probably won't be using Puppet at that point.  
    All minion specific parameters start with `minion_` prefix.  
    All master specific parameters start with `master_` prefix.  
 
@@ -41,5 +41,5 @@ For more details on parameters, check class `salt`.
     }
 
 ## Tests
-   For more examples check module tests directory.
+   For more examples check module tests directory.  
    NOTE: make sure you don't run tests on Production server.

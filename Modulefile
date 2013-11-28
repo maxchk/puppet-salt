@@ -1,5 +1,5 @@
 name    'maxchk-salt'
-version '0.0.1'
+version '0.0.2'
 author 'maxchk'
 license 'Apache License, Version 2.0'
 summary 'SaltStack module'

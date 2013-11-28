@@ -11,7 +11,7 @@
 # #master: salt
 # <% end -%>
 #
-# this makes crafting templates a simple matter of running 
+# this makes crafting templates a simple matter of running
 # few lines bash script :)
 #
 # ==== Minion parameters
@@ -43,9 +43,15 @@
 #   Defines if to install salt-master, can be true or false
 #   default value: false
 #
-# [*version*] 
+# [*version*]
 #   Which version of package to install,can be present, latest, absent or <version>
 #   default value: present
+#
+# [*manage_repo*]
+#   Set to true if you want to make use of the yum/apt repos
+#   as managed in the salt::repos class in this module.
+#   Requires either the example42 apt module or yum module, as appropriate.
+#   default value: false
 #
 # [*master_conf_file*]
 #   Configuration file for salt master
@@ -79,6 +85,7 @@
 class salt (
   $master                          = false,
   $version                         = present,
+  $manage_repo                     = false,
   $master_conf_file                = $salt::defaults::master_conf_file,
   $minion_conf_file                = $salt::defaults::minion_conf_file,
   $master_conf_template            = $salt::defaults::master_conf_template,
@@ -119,6 +126,11 @@ class salt (
   $minion_tcp_pull_port            = undef,
 ) inherits salt::defaults {
 
+  # Repo management
+  if $manage_repo {
+    include salt::repo
+  }
+
   # salt-master
   if $master {
     class {'salt::master':}
@@ -127,3 +139,5 @@ class salt (
   # salt-minion
   class {'salt::minion':}
 }
+# vim:shiftwidth=2:tabstop=2:softtabstop=2:expandtab:smartindent
+

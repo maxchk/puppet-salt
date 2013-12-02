@@ -1,0 +1,8 @@
+facter:
+<%-
+scope.compiler.topscope.to_hash.reject do |k,v|
+  k.to_s =~ /(uptime.*|last_run|timestamp|(memory|swap)free|ssh*)/ or ! v.is_a?(String)
+end.sort.each do |fact| -%>
+  <%= fact[0] -%>: 
+    - <%= fact[1] %>
+<% end %>

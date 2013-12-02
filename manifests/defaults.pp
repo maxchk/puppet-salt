@@ -17,4 +17,9 @@ class salt::defaults {
   $master_conf_template = 'salt/master.erb'
   $minion_conf_template = 'salt/minion.erb'
 
+  # set location of grains file
+  #
+  $grains_file = $::operatingsystem ? {
+    default => '/etc/salt/grains',
+  }
 }

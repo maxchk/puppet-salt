@@ -53,6 +53,21 @@
 #   Requires either the example42 apt module or yum module, as appropriate.
 #   default value: false
 #
+# [*facter_include*]
+#   If to make facts into grains.
+#   It runs facter and saves output in /etc/salt/grains file in a following format:
+#     facter:
+#       fact1: 
+#         - value1
+#       fact2: 
+#         - value2
+#      ... and so on
+#
+#   To target, just use -G 'facter:name:value'
+#   default value: false
+#   NOTE: if you already have /etc/salt/grains file non empty 
+#         do not use this option, as it will override its content
+#
 # [*master_conf_file*]
 #   Configuration file for salt master
 #
@@ -86,6 +101,7 @@ class salt (
   $master                          = false,
   $version                         = present,
   $manage_repo                     = false,
+  $facter_include                  = false,
   $master_conf_file                = $salt::defaults::master_conf_file,
   $minion_conf_file                = $salt::defaults::minion_conf_file,
   $master_conf_template            = $salt::defaults::master_conf_template,
@@ -137,6 +153,7 @@ class salt (
   }
 
   # salt-minion
+  $grains_file = $salt::defaults::grains_file
   class {'salt::minion':}
 }
 # vim:shiftwidth=2:tabstop=2:softtabstop=2:expandtab:smartindent

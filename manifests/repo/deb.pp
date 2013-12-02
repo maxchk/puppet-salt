@@ -10,7 +10,7 @@ class salt::repo::deb {
         distro     => $::lsbdistcodename,
         repository => 'main',
         key        => '0x4759fa960e27c0a6',
-        key_server => 'keyserver.ubuntu.com',
+        keyserver  => 'keyserver.ubuntu.com',
       }
     }
     'Debian': { # http://docs.saltstack.com/topics/installation/debian.html

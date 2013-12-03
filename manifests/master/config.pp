@@ -1,3 +1,4 @@
+# config for master
 class salt::master::config {
   file { 'master-conf':
     ensure  => present,

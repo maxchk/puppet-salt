@@ -1,3 +1,4 @@
+# minion class
 class salt::minion {
   anchor { 'salt::minion::begin': } ->
   class { '::salt::minion::install': } ->

@@ -1,1 +1,6 @@
 *.swp
+coverage/
+vendor/
+.bundle/
+Gemfile.lock
+spec/fixtures/*

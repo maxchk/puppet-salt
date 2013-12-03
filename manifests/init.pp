@@ -44,7 +44,8 @@
 #   default value: false
 #
 # [*version*]
-#   Which version of package to install,can be present, latest, absent or <version>
+#   Which version of package to install,can be present, latest,
+#   absent or <version>
 #   default value: present
 #
 # [*manage_repo*]
@@ -86,12 +87,14 @@
 # install salt (minion only)
 #include salt
 #
-# install salt (minion only) and set minion option 'master' to 'salt-master.example.com'
+# install salt (minion only) and set minion
+# option 'master' to 'salt-master.example.com'
 #class {'::salt':
 #  minion_master => 'salt-master.example.com',
 #}
 #
-# install salt (master and minion) and set minion option 'master' to 'salt-master.example.com'
+# install salt (master and minion) and set minion
+# option 'master' to 'salt-master.example.com'
 #class {'::salt':
 #  master        => true,
 #  minion_master => 'salt-master.example.com',

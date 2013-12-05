@@ -1,3 +1,4 @@
+# master class
 class salt::master {
   anchor { 'salt::master::begin': } ->
   class { '::salt::master::install': } ->

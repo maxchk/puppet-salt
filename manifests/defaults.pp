@@ -1,3 +1,4 @@
+# defaults for salt module
 class salt::defaults {
 
   # set location of conf file for master

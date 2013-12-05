@@ -3,6 +3,8 @@
 This Puppet module installs and configures Salt.  
 Tested on Ubuntu and CentOS.
 
+ [![Build Status](https://travis-ci.org/maxchk/puppet-salt.png)](https://travis-ci.org/maxchk/puppet-salt)
+
 ## Class ::salt
 
 Installs Salt.
@@ -62,5 +64,7 @@ install Salt (master and minion) and set minion option `master` to 'salt-master.
     }
 
 ## Tests
+Examine the `scripts/cibuild` script for how the Travis CI tests are run.
+
 For more examples check module tests directory.  
 NOTE: make sure you don't run tests on Production server.

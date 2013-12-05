@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+set -e
+
+[ -z "${PUPPET_VERSION}" ] && script/bootstrap
+
+bundle exec rake spec
+
+bundle exec puppet-lint --with-filename --fail-on-warnings --no-documentation-check --no-80chars-check manifests
+

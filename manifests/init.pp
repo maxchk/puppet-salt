@@ -44,7 +44,8 @@
 #   default value: false
 #
 # [*version*]
-#   Which version of package to install,can be present, latest, absent or <version>
+#   Which version of package to install,can be present, latest,
+#   absent or <version>
 #   default value: present
 #
 # [*manage_repo*]
@@ -57,15 +58,15 @@
 #   If to make facts into grains.
 #   It runs facter and saves output in /etc/salt/grains file in a following format:
 #     facter:
-#       fact1: 
+#       fact1:
 #         - value1
-#       fact2: 
+#       fact2:
 #         - value2
 #      ... and so on
 #
 #   To target, just use -G 'facter:name:value'
 #   default value: false
-#   NOTE: if you already have /etc/salt/grains file non empty 
+#   NOTE: if you already have /etc/salt/grains file non empty
 #         do not use this option, as it will override its content
 #
 # [*master_conf_file*]
@@ -86,12 +87,14 @@
 # install salt (minion only)
 #include salt
 #
-# install salt (minion only) and set minion option 'master' to 'salt-master.example.com'
+# install salt (minion only) and set minion
+# option 'master' to 'salt-master.example.com'
 #class {'::salt':
 #  minion_master => 'salt-master.example.com',
 #}
 #
-# install salt (master and minion) and set minion option 'master' to 'salt-master.example.com'
+# install salt (master and minion) and set minion
+# option 'master' to 'salt-master.example.com'
 #class {'::salt':
 #  master        => true,
 #  minion_master => 'salt-master.example.com',

@@ -1,6 +1,6 @@
 ## Puppet module for Salt
 
-This Puppet module installs and configures Salt.  
+This Puppet module installs and configures Salt (SaltStack).  
 Tested on Ubuntu and CentOS.
 
  [![Build Status](https://travis-ci.org/maxchk/puppet-salt.png)](https://travis-ci.org/maxchk/puppet-salt)

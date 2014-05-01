@@ -122,6 +122,7 @@ class salt (
   $master_keep_jobs                = undef,
   $master_job_cache                = undef,
   $master_minion_data_cache        = undef,
+  $master_auto_accept              = undef,
   $master_sock_dir                 = undef,
   $minion_master                   = undef,
   $minion_master_port              = undef,

@@ -531,7 +531,12 @@ auto_accept: <%= @master_auto_accept %>
 #nodegroups:
 #  group1: 'L@foo.domain.com,bar.domain.com,baz.domain.com and bl*.domain.com'
 #  group2: 'G@os:Debian and foo.domain.com'
-
+<%- if @master_nodegroups -%>
+nodegroups:
+<%- @master_nodegroups.sort.each do |group, value| -%>
+  <%= group %>: '<%= value %>'<%= "\n" -%>
+<%- end -%>
+<%- end -%>
 
 #####     Range Cluster settings     #####
 ##########################################

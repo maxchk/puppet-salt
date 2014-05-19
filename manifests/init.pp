@@ -78,6 +78,16 @@
 # [*master_conf_template*]
 #   Template file for salt master
 #
+# [*master_nodegroups*]
+#   Hash value of nodegroups
+#
+#   class { '::salt':
+#     master_nodegroups => {
+#       'group1'        => 'group1-*',
+#       'group2'        => 'group2-*',
+#     },
+#   }
+#
 # [*minion_conf_template*]
 #   Template file for salt minion
 #
@@ -124,6 +134,7 @@ class salt (
   $master_minion_data_cache        = undef,
   $master_auto_accept              = undef,
   $master_sock_dir                 = undef,
+  $master_nodegroups               = {},
   $minion_master                   = undef,
   $minion_master_port              = undef,
   $minion_user                     = undef,

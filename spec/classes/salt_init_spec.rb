@@ -7,8 +7,8 @@ describe "salt" do
 # Minion config
   context 'with minion_master => undef' do
     it do
-      should include_class('salt::minion')
-      should include_class('salt::minion::install')
+      should contain_class('salt::minion')
+      should contain_class('salt::minion::install')
       should contain_file('minion-conf').with({
         'ensure' => 'present',
         'owner'  => 'root',

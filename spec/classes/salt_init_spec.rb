@@ -26,6 +26,16 @@ describe "salt" do
       .with_content(/^master: host.example.com/) 
     end
   end
+  context 'with os = Ubuntu saucy' do
+    let(:facts) { {:operatingsystem => 'Ubuntu', :osfamily => 'Debian', :lsbdistid => 'Ubuntu', :lsbdistcodename => 'saucy'} }
+    it do
+      should contain_service('salt-minion').with({
+        'ensure'   => 'running',
+        'enable'   => true,
+        'provider' => 'debian',
+      })
+    end
+  end
 
 
 # Master config

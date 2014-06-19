@@ -5,7 +5,7 @@ class salt::repo {
   # (in puppet > 3.4 'contain' would be better/easier)
   anchor { ['salt::repo::begin', 'salt::repo::end']: }
 
-  case $::osfamily {
+  case $::operatingsystem {
     /(Debian|Ubuntu)/: {
       Anchor['salt::repo::begin'] ->
       class {'salt::repo::deb': } ->

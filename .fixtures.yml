@@ -1,7 +1,6 @@
 fixtures:
   repositories:
-    puppi: 'git://github.com/example42/puppi.git'
-    apt: 'git://github.com/example42/puppet-apt.git'
+    apt: 'git://github.com/puppetlabs/puppetlabs-apt.git'
     stdlib: 'git://github.com/puppetlabs/puppetlabs-stdlib.git'
   symlinks:
     salt: "#{source_dir}"

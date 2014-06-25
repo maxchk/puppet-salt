@@ -23,4 +23,14 @@ class salt::defaults {
   $grains_file = $::operatingsystem ? {
     default => '/etc/salt/grains',
   }
+
+  case $::operatingsystem {
+    /Ubuntu/: {
+      # salt only installs init style scripts
+      $service_provider = debian
+    }
+    default: {
+      $service_provider = undef
+    }
+  }
 }

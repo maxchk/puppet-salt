@@ -7,8 +7,8 @@ describe "salt" do
 # Minion config
   context 'with minion_master => undef' do
     it do
-      should include_class('salt::minion')
-      should include_class('salt::minion::install')
+      should contain_class('salt::minion')
+      should contain_class('salt::minion::install')
       should contain_file('minion-conf').with({
         'ensure' => 'present',
         'owner'  => 'root',
@@ -24,6 +24,16 @@ describe "salt" do
     it do
       should contain_file('minion-conf')\
       .with_content(/^master: host.example.com/) 
+    end
+  end
+  context 'with os = Ubuntu saucy' do
+    let(:facts) { {:operatingsystem => 'Ubuntu', :osfamily => 'Debian', :lsbdistid => 'Ubuntu', :lsbdistcodename => 'saucy'} }
+    it do
+      should contain_service('salt-minion').with({
+        'ensure'   => 'running',
+        'enable'   => true,
+        'provider' => 'debian',
+      })
     end
   end
 

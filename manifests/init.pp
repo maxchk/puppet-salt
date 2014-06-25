@@ -159,7 +159,18 @@ class salt (
 
   # Repo management
   if $manage_repo {
+
     include salt::repo
+
+    # ensure correct order
+    Class['salt::repo']
+    -> Class['salt::minion']
+
+    # ensure order also if master is installed
+    if $master {
+      Class['salt::repo']
+      -> Class['salt::master']
+    }
   }
 
   # salt-master

@@ -1,4 +1,4 @@
-class salt::minion::config {
+class salt::minion::config inherits salt {
   file { 'minion-conf':
     ensure  => present,
     path    => $salt::minion_conf_file,

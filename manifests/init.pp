@@ -155,6 +155,7 @@ class salt (
   $minion_ipc_mode                 = undef,
   $minion_tcp_pub_port             = undef,
   $minion_tcp_pull_port            = undef,
+  $minion_grains                   = undef,
 ) inherits salt::defaults {
 
   # Repo management
@@ -183,4 +184,3 @@ class salt (
   class {'salt::minion':}
 }
 # vim:shiftwidth=2:tabstop=2:softtabstop=2:expandtab:smartindent
-

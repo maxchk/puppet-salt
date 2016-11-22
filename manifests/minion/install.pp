@@ -14,7 +14,7 @@ class salt::minion::install inherits salt {
         #mode => '0644',
         source => "puppet:///modules/salt/Salt-Minion-2016.3.4-AMD64-Setup.exe",
       } ->
-      package { 'salt-minion':
+      package { 'Salt Minion 2016.3.4':
         ensure   => $ensure_setting,
         source   => "$temp_installer",
         install_options => ['/S']

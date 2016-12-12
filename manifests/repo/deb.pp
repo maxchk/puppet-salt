@@ -6,57 +6,23 @@ class salt::repo::deb {
 
   case $::operatingsystem {
     'Ubuntu': {
-      case $::lsbdistcodename {
-        'precise': {
-          apt::source {'saltstack':
-            location   => 'http://repo.saltstack.com/apt/ubuntu/12.04/amd64/archive/2016.3.2',
-            release    => "${::lsbdistcodename}",
-            repos      => 'main',
-            key        => 'DE57BFBE',
-            key_source => 'https://repo.saltstack.com/apt/ubuntu/12.04/amd64/archive/2016.3.2/SALTSTACK-GPG-KEY.pub',
-          }
-        }
-        'trusty': {
-          apt::source {'saltstack':
-            location   => 'http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2016.3.2',
-            release    => "${::lsbdistcodename}",
-            repos      => 'main',
-            key        => 'DE57BFBE',
-            key_source => 'https://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2016.3.2/SALTSTACK-GPG-KEY.pub',
-          }
-        }
-        'xenial': {
-          apt::source {'saltstack':
-            location   => 'http://repo.saltstack.com/apt/ubuntu/16.04/amd64/archive/2016.3.2',
-            release    => "${::lsbdistcodename}",
-            repos      => 'main',
-            key        => 'DE57BFBE',
-            key_source => 'https://repo.saltstack.com/apt/ubuntu/16.04/amd64/archive/2016.3.2/SALTSTACK-GPG-KEY.pub',
-          }
-        }
+      $os_string = $::os['release']['full']
+      apt::source {'saltstack':
+        location   => "http://repo.saltstack.com/apt/ubuntu/${os_string}/amd64/2016.11",
+        release    => "${::lsbdistcodename}",
+        repos      => 'main',
+        key        => 'DE57BFBE',
+        key_source => "https://repo.saltstack.com/apt/ubuntu/${os_string}/amd64/2016.11/SALTSTACK-GPG-KEY.pub",
       }
     }
     'Debian': {
-      case $::lsbdistcodename {
-        'wheezy': {
-          apt::source {'saltstack':
-            location   => 'http://repo.saltstack.com/apt/debian/7/amd64/archive/2016.3.1',
-            release    => "${::lsbdistcodename}",
-            repos      => 'main',
-            key        => 'DE57BFBE',
-            key_source => 'http://repo.saltstack.com/apt/debian/7/amd64/archive/2016.3.1/SALTSTACK-GPG-KEY.pub',
-          }
-        }
-        'jessie': {
-          apt::source {'saltstack':
-            location   => 'http://repo.saltstack.com/apt/debian/8/amd64/archive/2016.3.2',
-            release    => "${::lsbdistcodename}",
-            repos      => 'main',
-            key        => 'DE57BFBE',
-            key_source => 'https://repo.saltstack.com/apt/debian/8/amd64/archive/2016.3.2/SALTSTACK-GPG-KEY.pub',
-          }
-        }
-        default  : { fail("${::lsbdistcodename} is not yet supported, Add it and send a pull request!") }
+      $os_string = $::os['release']['major']
+      apt::source {'saltstack':
+        location   => "http://repo.saltstack.com/apt/debian/${os_string}/amd64/2016.11",
+        release    => "${::lsbdistcodename}",
+        repos      => 'main',
+        key        => 'DE57BFBE',
+        key_source => "https://repo.saltstack.com/apt/debian/${os_string}/amd64/2016.11/SALTSTACK-GPG-KEY.pub",
       }
     }
     default: { fail("${::operatingsystem} is not yet supported, Add it and send a pull request!") }

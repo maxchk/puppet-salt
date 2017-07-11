@@ -1,5 +1,5 @@
 # config for master
-class salt::master::config {
+class salt::master::config inherits salt {
   file { 'master-conf':
     ensure  => present,
     path    => $salt::master_conf_file,
